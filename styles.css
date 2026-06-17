@@ -265,7 +265,8 @@ button {
 /* ── HERO ── */
 #home {
   position: relative;
-  height: 96svh;
+  height: 96vh;
+  min-height: 640px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 55% 45%;
@@ -1873,7 +1874,7 @@ footer p {
   #home {
     grid-template-columns: 1fr;
     height: auto;
-    min-height: 96svh
+    min-height: 96vh
   }
 
   .hero-right-col {
@@ -1882,7 +1883,7 @@ footer p {
 
   .hero-name-block {
     grid-column: 1/-1;
-    min-height: 96svh
+    min-height: 96vh
   }
 
   #about {
