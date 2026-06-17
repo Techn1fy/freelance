@@ -837,8 +837,8 @@ footer p{font-size:.72rem;color:rgba(200,217,230,.3)}
   .hero-ctas{flex-direction:column;width:100%;align-items:stretch;gap:.6rem}
   .btn-hero-primary,.btn-hero-outline{text-align:center;padding:.65rem 1.5rem;font-size:.75rem}
   .hero-scroll-hint{display:none}
-  .hero-stats-pill{gap:.6rem .8rem;padding:.6rem .8rem}
-  .hero-stats-pill .h-stat[style]{border-left:none!important;padding-left:0!important}
+  .hero-stats-pill{gap:.6rem .8rem;padding:.6rem 2rem}
+  .hero-stats-pill .h-stat[style]{border-left:none!important;}
   .h-stat strong{font-size:.85rem}
   .h-stat span{font-size:.58rem}
   .about-image-col{height:85vw;max-height:320px}
