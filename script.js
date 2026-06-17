@@ -39,28 +39,28 @@ const CONFIG = {
   ],
   brands:[
     {name:'Lakme',            cat:'Cosmetics', iconKey:'Lakme',
-     icon:`<svg viewBox="0 0 24 24"><path d="M12 2c0 0-4 4-4 9a4 4 0 0 0 8 0c0-5-4-9-4-9z"/><path d="M8 13s-2 1-2 3a2 2 0 0 0 4 0"/><path d="M16 13s2 1 2 3a2 2 0 0 1-4 0"/></svg>`,
+     logo:'assets/lakme-logo.jpg',
      desc:'Ambassador & product review collaborations'},
     {name:'Dot & Key',        cat:'Skincare',  iconKey:'DotKey',
-     icon:`<svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
+     logo:'assets/dot-logo.jpg',
      desc:'Skincare review partnerships & launch content'},
     {name:'WOW Skin Science', cat:'Wellness',  iconKey:'WOW',
-     icon:`<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+     logo:'assets/wow-logo.jpg',
      desc:'Ingredient-focused review content creator'},
     {name:'Plum Goodness',    cat:'Beauty',    iconKey:'Plum',
-     icon:`<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/></svg>`,
+     logo:'assets/plum-logo.jpg',
      desc:'Clean beauty brand collaboration & reels'},
     {name:'Cetaphil',         cat:'Skincare',  iconKey:'Cetaphil',
-     icon:`<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+     logo:'assets/cetaphil-logo.jpg',
      desc:'Gentle skincare advocacy & product reviews'},
     {name:'Forest Essentials',cat:'Luxury',    iconKey:'ForestEss',
-     icon:`<svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.82A2 2 0 0 0 5.64 22c3.56-2.08 9.73-4.1 11.36-14z"/><path d="M17 8c0-5-3-6-3-6s-2 4-1 8"/></svg>`,
+     logo:'assets/forest-logo.jpg',
      desc:'Luxury Ayurvedic beauty content creation'},
     {name:'Minimalist',       cat:'Skincare',  iconKey:'Minimalist',
-     icon:`<svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>`,
+     logo:'assets/minimilist-logo.jpg',
      desc:'Science-backed skincare review series'},
     {name:'Nykaa',            cat:'Beauty',    iconKey:'Nykaa',
-     icon:`<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+     logo:'assets/nykaa-logo.jpg',
      desc:'Multi-brand curated beauty content & hauls'},
   ],
   testimonials:[
@@ -263,7 +263,7 @@ function closeMob(){burger.classList.remove('open');mob.classList.remove('open')
     const c=document.createElement('div');
     c.className='brand-card reveal';
     c.dataset.cat=b.cat;
-    c.innerHTML=`<div class="brand-icon" data-brand="${b.iconKey}">${b.icon}</div><h4>${b.name}</h4><span class="brand-cat">${b.cat}</span><p>${b.desc}</p>`;
+    c.innerHTML=`<div class="brand-icon" data-brand="${b.iconKey}"><img src="${b.logo}" alt="${b.name} logo" loading="lazy"></div><h4>${b.name}</h4><span class="brand-cat">${b.cat}</span><p>${b.desc}</p>`;
     g.appendChild(c);
   });
 })();
