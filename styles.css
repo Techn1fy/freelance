@@ -11,7 +11,7 @@
   --ease-out:cubic-bezier(0.16,1,0.3,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px;}
+html{scroll-behavior:smooth;font-size:16px;background:#081014;}
 body{font-family:var(--f-body);background:var(--beige);color:var(--navy);overflow-x:hidden;line-height:1.6}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
@@ -34,6 +34,10 @@ button{cursor:pointer;font-family:inherit}
 #nav:not(.scrolled) .nav-collab{background:rgba(255,255,255,.15);color:var(--white);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px)}
 #nav:not(.scrolled) .burger span{background:var(--white)}
 #nav.scrolled{background:rgba(245,239,235,.92);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(47,65,86,.07)}
+/* Mobile menu open: overlay bg is light, force dark logo/burger regardless of scroll state */
+#nav.menu-open .nav-logo{color:var(--navy)}
+#nav.menu-open .nav-badge{color:var(--teal)}
+#nav.menu-open .burger span{background:var(--navy)}
 .nav-logo{
   font-family:var(--f-display);font-weight:800;font-size:1.1rem;
   color:var(--navy);letter-spacing:-.03em;
@@ -814,10 +818,19 @@ footer p{font-size:.72rem;color:rgba(200,217,230,.3)}
   #brands{padding:5rem 0}
 
   /* TESTIMONIALS */
-  #testimonials{padding:5rem 1.5rem}
+  #testimonials{padding:5rem .8rem}
   .t-card.t-side{display:none}
   .t-card.t-center{flex:0 0 100%}
-  .testi-arrow{width:38px;height:38px;margin:0 6px}
+  .testi-stage-wrapper{position:relative}
+  .testi-stage{padding:0 2.6rem}
+  .testi-arrow{
+    width:34px;height:34px;margin:0;
+    position:absolute;top:50%;transform:translateY(-50%);
+    z-index:3;
+  }
+  .testi-arrow:hover{transform:translateY(-50%) scale(1.08)}
+  #testiPrev{left:0}
+  #testiNext{right:0}
 
   /* MODAL */
   #modalForm,#modalSuccess{padding:1rem 1.2rem}

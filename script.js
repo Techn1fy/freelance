@@ -77,8 +77,8 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>80)
 
 /* ── BURGER ── */
 const burger=document.getElementById('burger'),mob=document.getElementById('mobileOverlay');
-burger.addEventListener('click',()=>{burger.classList.toggle('open');mob.classList.toggle('open');document.body.style.overflow=mob.classList.contains('open')?'hidden':''});
-function closeMob(){burger.classList.remove('open');mob.classList.remove('open');document.body.style.overflow=''}
+burger.addEventListener('click',()=>{burger.classList.toggle('open');mob.classList.toggle('open');nav.classList.toggle('menu-open',mob.classList.contains('open'));document.body.style.overflow=mob.classList.contains('open')?'hidden':''});
+function closeMob(){burger.classList.remove('open');mob.classList.remove('open');nav.classList.remove('menu-open');document.body.style.overflow=''}
 
 /* ── MARQUEE STRIP ── */
 (function(){
