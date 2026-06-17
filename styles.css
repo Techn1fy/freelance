@@ -780,7 +780,7 @@ footer p{font-size:.72rem;color:rgba(200,217,230,.3)}
     width:100%;
   }
   .a-stat strong{font-size:1.5rem}
-  .about-award{font-size:.7rem;padding:.45rem 1rem}
+  .about-award{font-size:.6rem;padding:.45rem .8rem}
 
   /* SERVICES */
   #services{padding:5rem 1.5rem}
