@@ -820,7 +820,10 @@ footer p{font-size:.72rem;color:rgba(200,217,230,.3)}
   .testi-arrow{width:38px;height:38px;margin:0 6px}
 
   /* MODAL */
-  #modalForm,#modalSuccess{padding:1rem 0rem}
+  #modalForm,#modalSuccess{padding:1rem 1.2rem}
+  .modal-box h3 {
+    font-size: 1.3rem;
+  }
 
   /* FOOTER */
   footer{padding:1.5rem;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;text-align:center}
