@@ -64,9 +64,9 @@ const CONFIG = {
      desc:'Multi-brand curated beauty content & hauls'},
   ],
   testimonials:[
-    {quote:"Sungjem's honest reviews drove a 40% spike in our product sales during launch week. Her audience doesn't just follow — they act on her recommendations.",author:'Brand Manager',brand:'XYZ Skincare'},
-    {quote:"Her content is trusted. Her audience is engaged. The ROI on our collaboration was outstanding — results we hadn't seen with any other creator at her tier.",author:'Marketing Director',brand:'ABC Cosmetics'},
-    {quote:"Working with Sungjemish felt like a true creative partnership. The content she created exceeded all expectations — in quality and in audience response.",author:'Co-Founder',brand:'DEF Beauty'},
+    {quote:"Sungjem's honest reviews drove a 40% spike in our product sales during launch week. Her audience doesn't just follow — they act on her recommendations.",author:'Brand Manager',brand:'XYZ Skincare',avatar:'assets/avatar-1.jpg'},
+    {quote:"Her content is trusted. Her audience is engaged. The ROI on our collaboration was outstanding — results we hadn't seen with any other creator at her tier.",author:'Marketing Director',brand:'ABC Cosmetics',avatar:'assets/avatar-2.jpg'},
+    {quote:"Working with Sungjemish felt like a true creative partnership. The content she created exceeded all expectations — in quality and in audience response.",author:'Co-Founder',brand:'DEF Beauty',avatar:'assets/avatar-3.jpg'},
   ]
 };
 
@@ -82,7 +82,7 @@ function closeMob(){burger.classList.remove('open');mob.classList.remove('open')
 
 /* ── MARQUEE STRIP ── */
 (function(){
-  const items=['Beauty','Skincare','Authenticity','Lifestyle','Fashion','Travel','Dubai','Maldives','Collaboration','Content Creation','Cosmetology'];
+  const items=['Beauty','Skincare','Authenticity','Lifestyle','Fashion','Travel','Collaboration','Content Creation','Cosmetology'];
   const inner=document.getElementById('marqueeInner');
   [...items,...items].forEach(t=>{
     const s=document.createElement('span');s.textContent=t;inner.appendChild(s);
@@ -279,8 +279,6 @@ function closeMob(){burger.classList.remove('open');mob.classList.remove('open')
 
   function isMobile(){return window.innerWidth<=768}
 
-  function initials(name){return name.split(' ').map(w=>w[0]).join('').slice(0,2)}
-
   function makeCard(t,pos){
     const card=document.createElement('div');
     card.className='t-card t-'+pos;
@@ -292,7 +290,7 @@ function closeMob(){burger.classList.remove('open');mob.classList.remove('open')
       <div>
         <hr class="t-divider">
         <div class="t-author">
-          <div class="t-author-avatar">${initials(t.author)}</div>
+          <img class="t-author-avatar" src="${t.avatar}" alt="${t.author}">
           <div><strong>${t.author}</strong><span>${t.brand}</span></div>
         </div>
       </div>
@@ -370,13 +368,13 @@ function closeMob(){burger.classList.remove('open');mob.classList.remove('open')
 
   opts.forEach(o => {
     c.innerHTML += `
-      <div class="co-card">
+      <a class="co-card" href="${o.href}" target="_blank" rel="noopener">
         <div class="co-icon-wrap">
           <img src="${o.icon}" alt="${o.label}">
         </div>
         <p class="co-label">${o.label}</p>
-        <a href="${o.href}" target="_blank" rel="noopener">${o.text}</a>
-      </div>
+        <span class="co-text">${o.text}</span>
+      </a>
     `;
   });
 })();

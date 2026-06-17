@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Poppins:ital,wght@0,200;0,400;0,700;0,800;0,900;1,200;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,7 +27,7 @@
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
     <div id="modalForm">
-      <h3>Start a Collaboration ✦</h3>
+      <h3>Start a Collaboration</h3>
       <p class="modal-sub">Tell me about your brand and what you have in mind — I'll get back within 48 hours.</p>
       <div class="form-row">
         <div class="form-group">
@@ -57,7 +58,7 @@
         <label>Tell Me More</label>
         <textarea id="mMsg" placeholder="What's the product, campaign goal, timeline or budget?"></textarea>
       </div>
-      <button class="btn-modal-submit" id="modalSubmit">Send Proposal ✦</button>
+      <button class="btn-modal-submit" id="modalSubmit">Send Proposal </button>
     </div>
     <div class="modal-success" id="modalSuccess">
       <div class="success-icon">✦</div>
@@ -99,7 +100,7 @@
 
   <!-- Left: Text content -->
   <div class="hero-name-block">
-    <p class="hero-eyebrow">Certified Cosmetologist · NDTV India Skincare Influencer of the Year 2023</p>
+    <p class="hero-eyebrow">Certified Cosmetologist · India Skincare Influencer of the Year 2023</p>
     <span class="hero-name-first">Sungjemish</span>
     <span class="hero-name-last">Longkumer</span>
     <p class="hero-tagline">Beauty. Skin. <em style="font-style:italic">Authenticity.</em></p>
@@ -119,7 +120,10 @@
     <div class="hero-photo-frame">
       <img src="assets/light-27.jpg" alt="Sungjemlila Longkumer">
       <div class="hero-photo-badge">
-        <strong>NDTV India</strong>
+        <div class="badge-brand">
+          <img src="assets/ndtv.png" alt="NDTV" class="badge-logo">
+          <span style="font-weight: 600;">India</span>
+        </div>
         Skincare Influencer<br>of the Year 2023
       </div>
     </div>
@@ -147,7 +151,7 @@
     <p class="reveal">Sungjemlila Longkumer is a certified cosmetologist with a research-backed love for skincare science and beauty culture. She turned her expertise into a platform where authenticity is the only currency.</p>
     <p class="reveal">She creates honest, in-depth product reviews for cosmetic and skincare brands — reaching a highly engaged community of 528K+ beauty enthusiasts who return because they trust her, not because of filters.</p>
     <p class="reveal">For Sungjem, beauty isn't a trend. It's a ritual — personal, evolving, and deeply worth caring about.</p>
-    <div class="reveal"><span class="about-award">NDTV India 2023 Skincare Influencer of the Year</span></div>
+    <div class="reveal"><span class="about-award"><i class="fa-solid fa-award"></i>NDTV India 2023 Skincare Influencer of the Year</span></div>
     <div class="about-stats reveal" id="aboutStats"></div>
   </div>
 </section>
@@ -215,7 +219,7 @@
     <h2 class="reveal">Let's Create Something <em>Beautiful</em></h2>
     <p class="sub reveal">Open to brand collaborations, product reviews &amp; sponsored content</p>
     <div class="contact-options reveal" id="contactOptions"></div>
-    <button class="btn-collab reveal" id="openCollabModal">Start a Collaboration ✦</button>
+    <button class="btn-collab reveal" id="openCollabModal">Start a Collaboration</button>
   </div>
 </section>
 
