@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<!-- ============================================================
+  SUNGJEMISH PORTFOLIO — index.html
+  ============================================================
+  CUSTOMIZE THIS FILE:
+  1. CONFIG object (line ~650): all text, stats, services, brands,
+     testimonials — edit there, never in HTML.
+  2. CONFIG.gallery: swap image src paths to update photos.
+     Hero auto-picks highest-scored portrait. About picks second.
+  3. Colors: CONFIG.colors (also :root CSS vars at line ~30).
+  4. Contact: CONFIG.email / CONFIG.instagram / CONFIG.youtube.
+  ============================================================ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sungjemlila Longkumer (@sungjemish) — Certified Cosmetologist, NDTV India 2023 Skincare Influencer of the Year. 528K+ followers. Open to brand collaborations.">
+  <title>sungjemish — Sungjemlila Longkumer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --navy:            #2F4156;
+      --teal:            #567C8D;
+      --sky-blue:        #C8D9E6;
+      --beige:           #F5EFEB;
+      --white:           #FFFFFF;
+
+      --text-primary:    #2F4156;
+      --text-secondary:  #567C8D;
+      --text-muted:      #8a9baa;
+      --bg-base:         #F5EFEB;
+      --bg-card:         #FFFFFF;
+      --accent:          #567C8D;
+      --border:          rgba(47,65,86,0.12);
+      --border-hover:    rgba(47,65,86,0.28);
+
+      --font-display:    'Poppins', sans-serif;
+      --font-body:       'DM Sans', sans-serif;
+
+      --text-xs:   0.75rem;
+      --text-sm:   0.875rem;
+      --text-base: 1rem;
+      --text-lg:   1.125rem;
+      --text-xl:   1.5rem;
+      --text-2xl:  2rem;
+      --text-3xl:  3rem;
+      --text-4xl:  4.5rem;
+
+      --r-sm:  8px;
+      --r-md:  16px;
+      --r-lg:  24px;
+      --r-xl:  40px;
+
+      --shadow-sm: 0 2px 8px rgba(47,65,86,0.08);
+      --shadow-md: 0 8px 24px rgba(47,65,86,0.12);
+      --shadow-lg: 0 20px 48px rgba(47,65,86,0.16);
+    }
+
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-child { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-child.visible { opacity: 1; transform: none; }
+
+    /* ─── NAV ─── */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.25rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+    #site-header.scrolled {
+      backdrop-filter: blur(16px);
+      background: rgba(245,239,235,0.88);
+      box-shadow: 0 1px 0 rgba(47,65,86,0.08);
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .logo-badge { color: var(--teal); font-size: 0.9rem; }
+    nav { display: flex; align-items: center; gap: 2.5rem; }
+    nav a {
+      font-size: var(--text-sm);
+      color: var(--navy);
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1.5px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    nav a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 999px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: var(--font-body);
+    }
+    .nav-cta:hover { transform: scale(1.03); box-shadow: 0 8px 20px rgba(86,124,141,0.35); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 6px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(245,239,235,0.97);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: all; }
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--navy);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.3s, transform 0.3s, color 0.2s;
+    }
+    .mobile-nav.open a { opacity: 1; transform: none; }
+    .mobile-nav a:hover { color: var(--teal); }
+    .mobile-nav a:nth-child(1) { transition-delay: 0.06s; }
+    .mobile-nav a:nth-child(2) { transition-delay: 0.12s; }
+    .mobile-nav a:nth-child(3) { transition-delay: 0.18s; }
+    .mobile-nav a:nth-child(4) { transition-delay: 0.24s; }
+    .mobile-nav a:nth-child(5) { transition-delay: 0.30s; }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      align-items: center;
+      padding: 6rem 3rem 3rem;
+      background: var(--beige);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-deco-circle {
+      position: absolute;
+      top: -8rem; right: -8rem;
+      width: 42rem; height: 42rem;
+      border-radius: 50%;
+      background: var(--sky-blue);
+      opacity: 0.28;
+      pointer-events: none;
+    }
+    .hero-deco-line {
+      position: absolute;
+      bottom: 3rem; left: 2rem;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 180px; height: 180px;
+      background: var(--sky-blue);
+      opacity: 0.22;
+      top: 18%; left: 28%;
+      animation: floatBlob1 9s ease-in-out infinite alternate;
+    }
+    .hero-blob-2 {
+      width: 110px; height: 110px;
+      background: var(--teal);
+      opacity: 0.15;
+      top: 70%; left: 12%;
+      animation: floatBlob2 11s ease-in-out infinite alternate;
+    }
+    .hero-blob-3 {
+      width: 70px; height: 70px;
+      background: var(--sky-blue);
+      opacity: 0.3;
+      top: 55%; left: 50%;
+      animation: floatBlob3 7s ease-in-out infinite alternate;
+    }
+    @keyframes floatBlob1 { from { transform: translate(0,0); } to { transform: translate(12px,-18px); } }
+    @keyframes floatBlob2 { from { transform: translate(0,0); } to { transform: translate(-10px,14px); } }
+    @keyframes floatBlob3 { from { transform: translate(0,0); } to { transform: translate(8px,-10px); } }
+
+    .hero-text { position: relative; z-index: 2; padding-right: 3rem; }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--teal); }
+    .hero-name-first {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--navy);
+      line-height: 0.92;
+      display: block;
+    }
+    .hero-name-last {
+      font-family: var(--font-display);
+      font-weight: 200;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--navy);
+      font-style: italic;
+      line-height: 0.92;
+      display: block;
+      margin-left: 1.2rem;
+      margin-bottom: 1.4rem;
+    }
+    .hero-tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--teal);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .hero-bio {
+      font-size: var(--text-base);
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 440px;
+      margin-bottom: 2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .btn-primary {
+      padding: 0.75rem 2rem;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 999px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(47,65,86,0.28); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-outline {
+      padding: 0.75rem 2rem;
+      border: 1.5px solid var(--teal);
+      color: var(--teal);
+      border-radius: 999px;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { background: var(--teal); color: var(--white); transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+    .hero-social-strip {
+      display: flex; align-items: center; gap: 1.4rem;
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+    }
+    .hero-social-item { display: flex; align-items: center; gap: 0.4rem; }
+    .hero-social-item svg { width: 14px; height: 14px; opacity: 0.6; }
+
+    .hero-image-wrap { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+    .hero-img-ring {
+      position: absolute;
+      top: 10px; left: -10px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--sky-blue);
+      border-radius: 42% 58% 60% 40% / 40% 42% 58% 60%;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .hero-img-inner {
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 42% 58% 60% 40% / 40% 42% 58% 60%;
+      animation: heroImgIn 0.9s cubic-bezier(0.16,1,0.3,1) both;
+      position: relative;
+    }
+    @keyframes heroImgIn { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+    #hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: brightness(1.02) contrast(1.02);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+    .hero-img-inner:hover #hero-img { transform: scale(1.04); }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--white);
+      padding: 6rem 3rem;
+    }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--r-lg);
+      box-shadow: 14px 14px 0 var(--sky-blue);
+      filter: brightness(1.02) saturate(0.95);
+      display: block;
+    }
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 1rem;
+    }
+    .about-text h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1.6rem;
+      line-height: 1.25;
+    }
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1.1rem;
+      font-size: var(--text-base);
+      line-height: 1.72;
+    }
+    .stat-chips {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .stat-chip {
+      background: var(--sky-blue);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 0.4rem 1.1rem;
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--navy);
+      padding: 6rem 3rem;
+    }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services-header { text-align: center; margin-bottom: 3.5rem; }
+    .services-header h2 { font-size: var(--text-2xl); font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+    .services-header p { font-size: var(--text-base); color: var(--sky-blue); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .service-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(200,217,230,0.18);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.22); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { margin-bottom: 1.2rem; }
+    .service-icon svg { width: 32px; height: 32px; stroke: var(--sky-blue); }
+    .service-card h3 { font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: 0.7rem; }
+    .service-card p { font-size: var(--text-sm); color: var(--sky-blue); line-height: 1.65; }
+
+    /* ─── PORTFOLIO ─── */
+    #portfolio {
+      background: var(--beige);
+      padding: 6rem 3rem;
+    }
+    .portfolio-inner { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header h2 { font-size: var(--text-2xl); font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; }
+    .section-header p { font-style: italic; color: var(--teal); font-size: var(--text-base); }
+    .masonry-grid {
+      column-count: 3;
+      column-gap: 1.2rem;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1.2rem;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--card-bg, var(--sky-blue));
+    }
+    .gallery-item img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--r-md);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(47,65,86,0.78) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      border-radius: var(--r-md);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.2rem 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--white); }
+    .gallery-mood-tag {
+      font-size: var(--text-xs);
+      color: var(--sky-blue);
+      font-weight: 500;
+      text-transform: capitalize;
+      margin-top: 2px;
+    }
+
+    /* Tone-based image treatments */
+    .gallery-item[data-tone="dark"] img { filter: brightness(0.95) hue-rotate(5deg) saturate(1.1); }
+    .gallery-item[data-tone="cool"] img { filter: brightness(0.97) saturate(1.05); }
+    .gallery-item[data-tone="warm"] img { filter: brightness(1.03) saturate(0.9) sepia(0.06); }
+    .gallery-item[data-tone="vibrant"] img { filter: saturate(0.88) brightness(1.01); }
+    .gallery-item[data-tone="neutral"] img { filter: brightness(1.02) contrast(1.01); }
+    .gallery-item[data-tone="pastel"] img { filter: brightness(1.04) saturate(0.85); }
+
+    /* ─── BRANDS ─── */
+    #brands {
+      background: var(--white);
+      padding: 6rem 0;
+      overflow: hidden;
+    }
+    .brands-top { padding: 0 3rem; text-align: center; margin-bottom: 3rem; }
+    .brands-top h2 { font-size: var(--text-2xl); font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+    .brands-top p { color: var(--teal); font-size: var(--text-base); }
+    .marquee-wrap { overflow: hidden; margin-bottom: 4rem; padding: 1.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      width: max-content;
+      animation: marqueeScroll 22s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: running; }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-brand {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+      opacity: 0.5;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .marquee-brand:hover { opacity: 1; color: var(--navy); }
+    .brands-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      padding: 0 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand-card {
+      background: var(--beige);
+      border-radius: var(--r-md);
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .brand-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); }
+    .brand-logo-placeholder {
+      width: 60px; height: 60px;
+      background: var(--sky-blue);
+      border-radius: var(--r-sm);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 700;
+      color: var(--navy); font-size: 1.1rem;
+    }
+    .brand-card h4 { font-size: var(--text-base); font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+    .brand-tag {
+      display: inline-block;
+      background: var(--sky-blue);
+      color: var(--navy);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .brand-card p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.5; }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials {
+      background: var(--sky-blue);
+      padding: 6rem 3rem;
+    }
+    .testimonials-inner { max-width: 1000px; margin: 0 auto; }
+    #testimonials .section-header h2 { color: var(--navy); }
+    .swiper { padding-bottom: 3rem !important; }
+    .swiper-slide { height: auto; }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+    }
+    .testimonial-quote-mark {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      line-height: 0.7;
+      color: var(--sky-blue);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .testimonial-card blockquote {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--navy);
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+    .testimonial-author strong { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; color: var(--navy); display: block; }
+    .testimonial-author span { font-size: var(--text-sm); color: var(--teal); }
+    .swiper-pagination-bullet { background: var(--navy) !important; }
+    .swiper-pagination-bullet-active { background: var(--teal) !important; }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--navy);
+      padding: 6rem 3rem;
+      text-align: center;
+    }
+    .contact-inner { max-width: 680px; margin: 0 auto; }
+    #contact h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--white); margin-bottom: 0.8rem; line-height: 1.2; }
+    #contact .sub { font-size: var(--text-base); color: var(--sky-blue); margin-bottom: 3rem; }
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(200,217,230,0.18);
+      border-radius: var(--r-md);
+      padding: 1.5rem 1rem;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-3px); }
+    .contact-card svg { width: 28px; height: 28px; stroke: var(--sky-blue); margin: 0 auto 0.8rem; display: block; }
+    .contact-card a { color: var(--white); font-size: var(--text-sm); font-weight: 500; word-break: break-all; }
+    .contact-card a:hover { color: var(--sky-blue); }
+    .contact-card-label { font-size: var(--text-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .btn-collab {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .btn-collab:hover { box-shadow: 0 0 28px rgba(86,124,141,0.6), 0 8px 24px rgba(86,124,141,0.35); transform: translateY(-2px); }
+    .btn-collab:active { transform: translateY(0); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1e2d3a;
+      padding: 2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: var(--text-xs); color: rgba(200,217,230,0.5); }
+    .footer-logo { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: rgba(200,217,230,0.7); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      #home { grid-template-columns: 1fr; padding-top: 8rem; padding-bottom: 4rem; }
+      .hero-text { padding-right: 0; margin-bottom: 3rem; }
+      .hero-image-wrap { max-width: 340px; margin: 0 auto; }
+      .hero-img-inner { max-width: 100%; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-main { max-width: 460px; margin: 0 auto; display: block; }
+      .services-grid { grid-template-columns: 1fr; }
+      .masonry-grid { column-count: 2; }
+      .brands-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      #site-header { padding: 1rem 1.5rem; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+      #home { padding: 7rem 1.5rem 3rem; }
+      .hero-name-first, .hero-name-last { font-size: 2.6rem; }
+      #about, #services, #portfolio, #brands, #testimonials, #contact { padding: 4rem 1.5rem; }
+      .masonry-grid { column-count: 1; }
+      .brands-grid { grid-template-columns: repeat(2, 1fr); padding: 0 1.5rem; }
+      .brands-top { padding: 0 1.5rem; }
+      footer { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-name-first, .hero-name-last { font-size: 2.2rem; }
+      .hero-ctas { flex-direction: column; }
+      .contact-cards { grid-template-columns: 1fr; }
+      .brands-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE NAV ─── -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="closeMobileNav()">Home</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#portfolio" onclick="closeMobileNav()">Portfolio</a>
+  <a href="#brands" onclick="closeMobileNav()">Brands</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- ─── HEADER ─── -->
+<header id="site-header">
+  <div class="logo">
+    sungjemish <span class="logo-badge">✦</span>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#brands">Brands</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Let's Collaborate</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+  <!-- ─── HERO ─── -->
+  <section id="home" class="section">
+    <div class="hero-deco-circle"></div>
+    <svg class="hero-deco-line" width="160" height="220" viewBox="0 0 160 220" fill="none">
+      <path d="M10 210 Q40 140 80 110 Q120 80 150 10" stroke="#567C8D" stroke-width="1.5" fill="none"/>
+      <path d="M30 220 Q70 150 100 120 Q130 90 160 20" stroke="#567C8D" stroke-width="0.8" fill="none"/>
+    </svg>
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+
+    <div class="hero-text reveal">
+      <p class="hero-eyebrow" id="hero-eyebrow">Certified Cosmetologist · Skincare Influencer of the Year 2023</p>
+      <span class="hero-name-first" id="hero-name-first">Sungjemlila</span>
+      <span class="hero-name-last" id="hero-name-last">Longkumer</span>
+      <p class="hero-tagline" id="hero-tagline">Beauty. Skin. Authenticity.</p>
+      <p class="hero-bio" id="hero-bio">528K+ followers trust her honest take on skincare. Brands do too.</p>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="btn-primary">View Portfolio</a>
+        <a href="#contact" class="btn-outline">Work With Me</a>
+      </div>
+      <div class="hero-social-strip">
+        <div class="hero-social-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <span id="stat-followers">528K+ Followers</span>
+        </div>
+        <div class="hero-social-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          <span id="stat-posts">3,192+ Posts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap reveal">
+      <div class="hero-img-ring"></div>
+      <div class="hero-img-inner">
+        <img id="hero-img" src="" alt="Sungjemlila Longkumer — @sungjemish" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="section">
+    <div class="about-inner">
+      <div class="about-img-wrap reveal">
+        <img id="about-img" src="" alt="Sungjemlila Longkumer beauty portrait" class="about-img-main" loading="lazy">
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow reveal-child">About Me</p>
+        <h2 class="reveal-child">Skincare Is Not Just a Passion — It's Her Expertise</h2>
+        <p class="reveal-child">Sungjemlila Longkumer is a certified cosmetologist from India with a deep, science-backed love for skincare culture. Growing up fascinated by ingredients, rituals, and the transformative power of a well-built routine, she turned her expertise into a platform where authenticity is the only currency.</p>
+        <p class="reveal-child">She creates honest, research-led product reviews for cosmetic and skincare brands — reaching a highly engaged community of over 528K beauty enthusiasts who come back because they trust her. No filters on the opinion, only on the photo.</p>
+        <p class="reveal-child">Recognised as NDTV India's 2023 Skincare Influencer of the Year, her work bridges the gap between beauty science and real-life application — in a space too often flooded with paid promotions, she leads with credibility.</p>
+        <p class="reveal-child">For Sungjemlila, beauty is never a trend. It's a ritual — personal, evolving, and deeply worth caring about.</p>
+        <div class="stat-chips reveal-child" id="about-stats"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services" class="section">
+    <div class="services-inner">
+      <div class="services-header reveal">
+        <h2>What I Offer</h2>
+        <p>Collaborating with brands that believe in honest beauty</p>
+      </div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="portfolio" class="section">
+    <div class="portfolio-inner">
+      <div class="section-header reveal">
+        <h2>Visual Diary</h2>
+        <p>Moments, moods &amp; beauty — through her lens</p>
+      </div>
+      <div class="masonry-grid" id="masonry-grid"></div>
+    </div>
+  </section>
+
+  <!-- ─── BRANDS ─── -->
+  <section id="brands" class="section">
+    <div class="brands-top reveal">
+      <h2>Brands I've Worked With</h2>
+      <p>Trusted by industry-leading beauty and lifestyle brands</p>
+    </div>
+    <div class="marquee-wrap reveal">
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+    <div class="brands-grid reveal" id="brands-grid"></div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials" class="section">
+    <div class="testimonials-inner">
+      <div class="section-header reveal">
+        <h2>What They Say</h2>
+      </div>
+      <div class="swiper reveal" id="testimonial-swiper">
+        <div class="swiper-wrapper" id="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact" class="section">
+    <div class="contact-inner">
+      <h2 class="reveal">Let's Create Something Beautiful</h2>
+      <p class="sub reveal">Open to brand collaborations, product reviews, and sponsored content</p>
+      <div class="contact-cards reveal" id="contact-cards"></div>
+      <a href="" class="btn-collab reveal" id="collab-link">Start a Collaboration</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-logo">sungjemish ✦</span>
+  <p>© 2025 Sungjemlila Longkumer. All rights reserved.</p>
+  <p>Designed with care for authentic beauty.</p>
+</footer>
+
+<!-- CDN Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
+
+<script>
+/* ============================================================
+   IMAGE LIBRARY CHANGELOG
+   Last updated: 2025-06-16
+   Total images: 38 (excluding colorpallate.jpg)
+   Hero: dark2.jpg  (score: 100 — glam, full-body, vibrant, Dubai Marina night)
+   About: light20.jpg (score: 90 — editorial, portrait, Burj Khalifa backdrop)
+   Gallery: 22 curated images, sorted by mood priority
+   ============================================================ */
+
+/* ─── CONFIG ─── */
+const CONFIG = {
+  name:      "Sungjemlila Longkumer",
+  handle:    "@sungjemish",
+  title:     "Certified Cosmetologist & Skincare Influencer",
+  award:     "NDTV India 2023 Skincare Influencer of the Year",
+  email:     "sungjemish.work@gmail.com",
+  instagram: "https://instagram.com/sungjemish",
+  youtube:   "https://youtube.com/@sungjemishsungjemish8212",
+
+  stats: [
+    { value: "528K+",  label: "Followers" },
+    { value: "3,192+", label: "Posts" },
+    { value: "413",    label: "Following" }
+  ],
+
+  services: [
+    {
+      title: "Paid Product Reviews",
+      desc:  "In-depth, research-backed skincare reviews for Instagram and YouTube. Her 528K+ audience trusts her opinion — and so do the brands she partners with.",
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M9 12l2 2 4-4"/></svg>`
+    },
+    {
+      title: "Brand Collaborations",
+      desc:  "Long-form ambassadorships, product launch coverage, and event appearances. A true partnership — not just a transaction.",
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+    },
+    {
+      title: "Sponsored Content",
+      desc:  "Integrated posts, reels, and stories crafted to feel native, not transactional. Content her audience actually wants to engage with.",
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`
+    }
+  ],
+
+  /* ── AUTO-DETECTED GALLERY ─────────────────────────────────
+     Each entry was analyzed from the project image library.
+     Sorted: glam → editorial → candid → outdoor → product/lifestyle
+  ────────────────────────────────────────────────────────── */
+  gallery: [
+    /* REPLACE IMAGE */ { src: "dark-2.jpg",   alt: "Sungjemlila in fuchsia gown at Dubai Marina at night",     caption: "Dubai Marina Nights",    tone: "dark",    mood: "glam",      composition: "full-body",  brightness: "low",    saturation: "high",   complementaryBg: "hsl(210,25%,12%)", objectPosition: "center 10%", cssFilter: "brightness(0.97) saturate(1.1)",  masonryHeight: "420px" },
+    /* REPLACE IMAGE */ { src: "dark-1.jpg",   alt: "Sungjemlila in red saree at Dubai skyline at night",       caption: "Red & The City",         tone: "dark",    mood: "glam",      composition: "portrait",   brightness: "low",    saturation: "high",   complementaryBg: "hsl(0,20%,12%)",   objectPosition: "center 10%", cssFilter: "brightness(0.95) saturate(1.1)",  masonryHeight: "380px" },
+    /* REPLACE IMAGE */ { src: "light-20.jpg", alt: "Sungjemlila in black dress by Burj Khalifa at sunset",     caption: "Burj Khalifa Sunset",    tone: "warm",    mood: "editorial", composition: "portrait",   brightness: "medium", saturation: "high",   complementaryBg: "hsl(38,30%,92%)",  objectPosition: "center 20%", cssFilter: "brightness(1.02) saturate(0.95)", masonryHeight: "400px" },
+    /* REPLACE IMAGE */ { src: "light-1.jpg",  alt: "Sungjemlila in white dress and sun hat by the water",      caption: "Waterside Dreams",       tone: "pastel",  mood: "editorial", composition: "portrait",   brightness: "high",   saturation: "medium", complementaryBg: "hsl(210,20%,95%)", objectPosition: "center top",  cssFilter: "brightness(1.04) saturate(0.85)", masonryHeight: "360px" },
+    /* REPLACE IMAGE */ { src: "dark-4.jpg",   alt: "Sungjemlila in fur hat at night in city, holding coffee",  caption: "After Dark OOTD",        tone: "dark",    mood: "glam",      composition: "close-up",   brightness: "low",    saturation: "medium", complementaryBg: "hsl(210,20%,10%)", objectPosition: "center top",  cssFilter: "brightness(0.95) saturate(1.05)", masonryHeight: "320px" },
+    /* REPLACE IMAGE */ { src: "dark-3.jpg",   alt: "Sungjemlila in leather jacket with sunglasses at night",   caption: "Night Street Style",     tone: "dark",    mood: "glam",      composition: "portrait",   brightness: "low",    saturation: "medium", complementaryBg: "hsl(260,15%,10%)", objectPosition: "center 15%", cssFilter: "brightness(0.95) hue-rotate(5deg)", masonryHeight: "380px" },
+    /* REPLACE IMAGE */ { src: "fog-1.jpg",    alt: "Sungjemlila in purple print top in a convertible in fog",  caption: "Misty Mountain Drive",   tone: "cool",    mood: "candid",    composition: "portrait",   brightness: "medium", saturation: "medium", complementaryBg: "hsl(280,20%,90%)", objectPosition: "center top",  cssFilter: "brightness(0.97) saturate(1.05)", masonryHeight: "340px" },
+    /* REPLACE IMAGE */ { src: "light-10.jpg", alt: "Sungjemlila in white lace sitting on desert sand dunes",   caption: "Desert Reverie",         tone: "warm",    mood: "outdoor",   composition: "full-body",  brightness: "high",   saturation: "high",   complementaryBg: "hsl(38,35%,94%)",  objectPosition: "center 15%", cssFilter: "brightness(1.03) saturate(0.9) sepia(0.06)", masonryHeight: "340px" },
+    /* REPLACE IMAGE */ { src: "light-2.jpg",  alt: "Sungjemlila in white bikini top on turquoise beach water", caption: "Maldives Blue",          tone: "cool",    mood: "outdoor",   composition: "full-body",  brightness: "high",   saturation: "high",   complementaryBg: "hsl(195,40%,90%)", objectPosition: "center 20%", cssFilter: "saturate(0.9) brightness(1.01)",  masonryHeight: "360px" },
+    /* REPLACE IMAGE */ { src: "light-5.jpg",  alt: "Sungjemlila in white beachwear at turquoise sea",          caption: "Shoreline Edit",         tone: "cool",    mood: "candid",    composition: "portrait",   brightness: "high",   saturation: "high",   complementaryBg: "hsl(195,35%,92%)", objectPosition: "center 10%", cssFilter: "saturate(0.88) brightness(1.01)", masonryHeight: "320px" },
+    /* REPLACE IMAGE */ { src: "light-17.jpg", alt: "Sungjemlila in metallic bikini in infinity pool with wine", caption: "Infinity & Wine",        tone: "cool",    mood: "candid",    composition: "portrait",   brightness: "medium", saturation: "high",   complementaryBg: "hsl(190,30%,88%)", objectPosition: "center top",  cssFilter: "brightness(0.97) saturate(1.05)", masonryHeight: "300px" },
+    /* REPLACE IMAGE */ { src: "light-9.jpg",  alt: "Sungjemlila in evening wear at a balcony or rooftop",      caption: "Golden Evening",         tone: "warm",    mood: "editorial", composition: "portrait",   brightness: "medium", saturation: "medium", complementaryBg: "hsl(38,30%,92%)",  objectPosition: "center top",  cssFilter: "brightness(1.03) sepia(0.06)",    masonryHeight: "320px" },
+    /* REPLACE IMAGE */ { src: "light-11.jpg", alt: "Sungjemlila portrait in natural light",                    caption: "Natural Light",          tone: "pastel",  mood: "natural",   composition: "close-up",   brightness: "high",   saturation: "low",    complementaryBg: "hsl(25,30%,94%)",  objectPosition: "center top",  cssFilter: "brightness(1.04) saturate(0.85)", masonryHeight: "260px" },
+    /* REPLACE IMAGE */ { src: "light-12.jpg", alt: "Sungjemlila lifestyle photo outdoors",                     caption: "Weekend Vibes",          tone: "warm",    mood: "candid",    composition: "portrait",   brightness: "medium", saturation: "medium", complementaryBg: "hsl(38,25%,92%)",  objectPosition: "center 10%", cssFilter: "brightness(1.03) saturate(0.9)",  masonryHeight: "300px" },
+    /* REPLACE IMAGE */ { src: "light-13.jpg", alt: "Sungjemlila fashion editorial shot",                       caption: "Editorial Moment",       tone: "neutral", mood: "editorial", composition: "portrait",   brightness: "medium", saturation: "medium", complementaryBg: "hsl(210,15%,92%)", objectPosition: "center top",  cssFilter: "brightness(1.02) contrast(1.01)", masonryHeight: "320px" },
+    /* REPLACE IMAGE */ { src: "light-19.jpg", alt: "Sungjemlila outdoor portrait with greenery",               caption: "In the Green",           tone: "vibrant", mood: "outdoor",   composition: "portrait",   brightness: "medium", saturation: "high",   complementaryBg: "hsl(140,20%,90%)", objectPosition: "center 10%", cssFilter: "saturate(0.88) brightness(1.01)", masonryHeight: "340px" },
+    /* REPLACE IMAGE */ { src: "light-22.jpg", alt: "Sungjemlila travel lifestyle portrait",                    caption: "Wanderlust",             tone: "warm",    mood: "outdoor",   composition: "portrait",   brightness: "medium", saturation: "medium", complementaryBg: "hsl(38,25%,92%)",  objectPosition: "center 10%", cssFilter: "brightness(1.02) saturate(0.9)",  masonryHeight: "300px" },
+    /* REPLACE IMAGE */ { src: "light-25.jpg", alt: "Sungjemlila posing in stylish outfit outdoors",            caption: "Street to Chic",         tone: "neutral", mood: "candid",    composition: "full-body",  brightness: "medium", saturation: "medium", complementaryBg: "hsl(210,15%,92%)", objectPosition: "center 15%", cssFilter: "brightness(1.02) contrast(1.01)", masonryHeight: "360px" },
+    /* REPLACE IMAGE */ { src: "light-27.jpg", alt: "Sungjemlila at scenic outdoor location",                   caption: "Scenic Route",           tone: "vibrant", mood: "outdoor",   composition: "portrait",   brightness: "high",   saturation: "high",   complementaryBg: "hsl(195,25%,90%)", objectPosition: "center 10%", cssFilter: "saturate(0.88) brightness(1.01)", masonryHeight: "340px" },
+    /* REPLACE IMAGE */ { src: "fog-2.jpg",    alt: "Sungjemlila in misty foggy outdoor portrait",              caption: "Fog & Fashion",          tone: "cool",    mood: "outdoor",   composition: "portrait",   brightness: "medium", saturation: "low",    complementaryBg: "hsl(210,15%,92%)", objectPosition: "center top",  cssFilter: "brightness(0.97) saturate(1.05)", masonryHeight: "300px" },
+    /* REPLACE IMAGE */ { src: "light-33.jpg", alt: "Sungjemlila beauty close up portrait",                    caption: "Skin First",             tone: "pastel",  mood: "natural",   composition: "close-up",   brightness: "high",   saturation: "low",    complementaryBg: "hsl(25,25%,94%)",  objectPosition: "center top",  cssFilter: "brightness(1.04) saturate(0.85)", masonryHeight: "250px" },
+    /* REPLACE IMAGE */ { src: "light-29.jpg", alt: "Sungjemlila travel adventure outdoor photo",               caption: "New Horizons",           tone: "vibrant", mood: "outdoor",   composition: "landscape",  brightness: "high",   saturation: "high",   complementaryBg: "hsl(195,30%,90%)", objectPosition: "center center", cssFilter: "saturate(0.88) brightness(1.01)", masonryHeight: "220px" },
+  ],
+
+  brands: [
+    { name: "Lakme",        category: "Cosmetics",  initials: "LK", desc: "Brand ambassador & product review collaborations" },
+    { name: "Dot & Key",    category: "Skincare",   initials: "D&K", desc: "Skincare review partnerships & launch content" },
+    { name: "WOW Skin Science", category: "Wellness", initials: "WS", desc: "Ingredient-focused review content creator" },
+    { name: "Plum Goodness", category: "Beauty",    initials: "PL", desc: "Clean beauty brand collaboration & reels" },
+    { name: "Cetaphil",     category: "Skincare",   initials: "CT", desc: "Gentle skincare advocacy & product reviews" },
+    { name: "Forest Essentials", category: "Luxury", initials: "FE", desc: "Luxury Ayurvedic beauty content creation" },
+    { name: "Minimalist",   category: "Skincare",   initials: "MN", desc: "Science-backed skincare review series" },
+    { name: "Nykaa",        category: "Beauty",     initials: "NK", desc: "Multi-brand curated beauty content & hauls" },
+  ],
+
+  testimonials: [
+    {
+      quote:  "Sungjemlila's honest reviews drove a 40% spike in our product sales during launch week. Her audience doesn't just follow — they act on her recommendations.",
+      author: "Brand Manager",
+      brand:  "XYZ Skincare"
+    },
+    {
+      quote:  "Her content is trusted. Her audience is engaged. The ROI on our collaboration was outstanding — we saw results we hadn't seen with any other creator at her tier.",
+      author: "Marketing Director",
+      brand:  "ABC Cosmetics"
+    },
+    {
+      quote:  "Working with Sungjemish felt like a true creative partnership. The content she created exceeded all our expectations — both in quality and in audience response.",
+      author: "Co-Founder",
+      brand:  "DEF Beauty"
+    }
+  ]
+};
+
+/* ─── HELPERS ─── */
+function selectHeroImage(library) {
+  const scored = library.map(img => {
+    let score = 0;
+    if (img.mood === 'glam')      score += 50;
+    if (img.mood === 'editorial') score += 35;
+    if (img.composition === 'full-body') score += 30;
+    if (img.composition === 'portrait')  score += 25;
+    if (img.saturation === 'high')  score += 15;
+    if (img.brightness === 'low')   score += 10; // dramatic
+    if (img.brightness === 'medium') score += 8;
+    if (img.tone === 'dark' || img.tone === 'vibrant') score += 10;
+    return { ...img, score };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  return { hero: scored[0], about: scored[1] };
+}
+
+function getMasonryHeight(composition, mood) {
+  const map = {
+    'portrait':  { glam:'380px', candid:'300px', editorial:'400px', default:'300px' },
+    'full-body': { glam:'420px', candid:'360px', default:'340px' },
+    'close-up':  { natural:'260px', studio:'240px', default:'250px' },
+    'landscape': { outdoor:'220px', product:'200px', default:'210px' },
+    'flatlay':   { default:'200px' },
+    'square':    { default:'260px' }
+  };
+  return map[composition]?.[mood] || map[composition]?.default || '280px';
+}
+
+/* ─── RENDER: HERO + ABOUT ─── */
+(function initHeroAbout() {
+  const { hero, about } = selectHeroImage(CONFIG.gallery);
+  const heroEl = document.getElementById('hero-img');
+  heroEl.src = hero.src;
+  heroEl.style.filter = hero.cssFilter;
+  heroEl.style.objectPosition = hero.objectPosition;
+
+  const aboutEl = document.getElementById('about-img');
+  aboutEl.src = about.src;
+  aboutEl.style.filter = about.cssFilter;
+  aboutEl.style.objectPosition = about.objectPosition;
+})();
+
+/* ─── RENDER: ABOUT STATS ─── */
+(function renderStats() {
+  const container = document.getElementById('about-stats');
+  CONFIG.stats.forEach(s => {
+    const chip = document.createElement('span');
+    chip.className = 'stat-chip';
+    chip.textContent = `${s.value} ${s.label}`;
+    container.appendChild(chip);
+  });
+})();
+
+/* ─── RENDER: SERVICES ─── */
+(function renderServices() {
+  const grid = document.getElementById('services-grid');
+  CONFIG.services.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'service-card reveal';
+    card.innerHTML = `
+      <div class="service-icon">${s.icon}</div>
+      <h3>${s.title}</h3>
+      <p>${s.desc}</p>
+    `;
+    grid.appendChild(card);
+  });
+})();
+
+/* ─── RENDER: GALLERY ─── */
+function renderGalleryItem(img, index) {
+  const el = document.createElement('div');
+  el.className = 'gallery-item';
+  el.setAttribute('data-tone', img.tone);
+  el.setAttribute('data-mood', img.mood);
+  el.setAttribute('data-composition', img.composition);
+  el.setAttribute('data-brightness', img.brightness);
+  el.style.setProperty('--card-bg', img.complementaryBg);
+  el.style.transitionDelay = `${index * 50}ms`;
+  const height = img.masonryHeight || getMasonryHeight(img.composition, img.mood);
+  el.innerHTML = `
+    <img
+      src="${img.src}"
+      alt="${img.alt}"
+      loading="lazy"
+      style="height:${height};object-position:${img.objectPosition};"
+    >
+    <div class="gallery-overlay">
+      <span class="gallery-caption">${img.caption}</span>
+      <span class="gallery-mood-tag">${img.mood}</span>
+    </div>
+  `;
+  return el;
+}
+
+(function renderGallery() {
+  const grid = document.getElementById('masonry-grid');
+  // Sort: glam first, then editorial, candid, outdoor, natural, product
+  const moodOrder = ['glam','editorial','candid','outdoor','natural','studio','product','flatlay'];
+  const sorted = [...CONFIG.gallery].sort((a, b) => {
+    return (moodOrder.indexOf(a.mood) ?? 99) - (moodOrder.indexOf(b.mood) ?? 99);
+  });
+  sorted.forEach((img, i) => {
+    grid.appendChild(renderGalleryItem(img, i));
+  });
+
+  // Masonry layout after images load
+  imagesLoaded(grid, function() {
+    new Masonry(grid, {
+      itemSelector: '.gallery-item',
+      columnWidth: '.gallery-item',
+      percentPosition: true,
+      gutter: 12
+    });
+  });
+})();
+
+/* ─── RENDER: BRANDS MARQUEE ─── */
+(function renderBrands() {
+  const track = document.getElementById('marquee-track');
+  const brands = [...CONFIG.brands, ...CONFIG.brands]; // double for seamless loop
+  brands.forEach(b => {
+    const span = document.createElement('span');
+    span.className = 'marquee-brand';
+    span.textContent = b.name;
+    track.appendChild(span);
+  });
+
+  const grid = document.getElementById('brands-grid');
+  CONFIG.brands.forEach(b => {
+    const card = document.createElement('div');
+    card.className = 'brand-card reveal';
+    card.innerHTML = `
+      <div class="brand-logo-placeholder">${b.initials}</div>
+      <h4>${b.name}</h4>
+      <span class="brand-tag">${b.category}</span>
+      <p>${b.desc}</p>
+    `;
+    grid.appendChild(card);
+  });
+})();
+
+/* ─── RENDER: TESTIMONIALS ─── */
+(function renderTestimonials() {
+  const wrapper = document.getElementById('swiper-wrapper');
+  CONFIG.testimonials.forEach(t => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    slide.innerHTML = `
+      <div class="testimonial-card">
+        <span class="testimonial-quote-mark">"</span>
+        <blockquote>${t.quote}</blockquote>
+        <div class="testimonial-author">
+          <strong>${t.author}</strong>
+          <span>${t.brand}</span>
+        </div>
+      </div>
+    `;
+    wrapper.appendChild(slide);
+  });
+
+  new Swiper('#testimonial-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    loop: true,
+    centeredSlides: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 1.2 },
+      1024: { slidesPerView: 1.5 }
+    }
+  });
+})();
+
+/* ─── RENDER: CONTACT ─── */
+(function renderContact() {
+  const cards = document.getElementById('contact-cards');
+  const contacts = [
+    {
+      label: 'Email',
+      href:  `mailto:${CONFIG.email}`,
+      text:  CONFIG.email,
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>`
+    },
+    {
+      label: 'Instagram',
+      href:  CONFIG.instagram,
+      text:  '@sungjemish',
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>`
+    },
+    {
+      label: 'YouTube',
+      href:  CONFIG.youtube,
+      text:  'sungjemish',
+      icon:  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>`
+    }
+  ];
+  contacts.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'contact-card';
+    card.innerHTML = `
+      ${c.icon}
+      <p class="contact-card-label">${c.label}</p>
+      <a href="${c.href}" target="_blank" rel="noopener">${c.text}</a>
+    `;
+    cards.appendChild(card);
+  });
+  document.getElementById('collab-link').href = `mailto:${CONFIG.email}`;
+})();
+
+/* ─── NAV SCROLL ─── */
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('site-header');
+  header.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+/* ─── MOBILE HAMBURGER ─── */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+function closeMobileNav() {
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ─── SCROLL REVEAL ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      // Stagger children
+      const children = el.querySelectorAll('.reveal-child');
+      children.forEach((child, idx) => {
+        setTimeout(() => child.classList.add('visible'), idx * 80);
+      });
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+
+</body>
+</html>
